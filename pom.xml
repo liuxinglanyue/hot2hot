@@ -60,7 +60,7 @@
                             <classpathPrefix>lib/</classpathPrefix>
                         </manifest>
                         <manifestEntries>
-                            <Premain-Class>com.hot.deploy.AgentMain</Premain-Class>
+                            <Premain-Class>org.hot2hot.AgentMain</Premain-Class>
                             <Can-Redefine-Classes>true</Can-Redefine-Classes>
                             <Boot-Class-Path>hot2hot.jar</Boot-Class-Path>
                         </manifestEntries>
