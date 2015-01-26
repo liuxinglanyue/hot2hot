@@ -1,5 +1,11 @@
 
-
+/**
+ * 启动参数配置 javaagent
+ * -javaagent:hot2hot.jar
+ * 
+ * @author jiaojianfeng
+ *
+ */
 public class TestAgent {
 
 	public static void main(String[] args) throws InterruptedException {
