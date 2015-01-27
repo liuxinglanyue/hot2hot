@@ -8,6 +8,8 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 import org.hot2hot.ClassRedefiner;
+import org.hot2hot.utils.Clazzs;
+import org.hot2hot.utils.PackageFromClassFile;
 
 /**
  * 文件扫描
@@ -24,6 +26,8 @@ public class FileScanTask implements Runnable {
 	@Override
 	public void run() {
 		try {
+			//System.out.println(filePath);
+			//System.out.println(Thread.currentThread().getContextClassLoader());
 			File file = new File(filePath);
 			if(!file.exists() || !file.isDirectory()) {
 				return;
@@ -41,8 +45,6 @@ public class FileScanTask implements Runnable {
 			});
 			
 			for(File classFile : classFiles) {
-				System.out.println(classFile.getAbsolutePath());
-				
 				FileInputStream fs = null;
 				FileChannel channel = null;
 				try {
@@ -53,17 +55,16 @@ public class FileScanTask implements Runnable {
 					
 					byte[] b = byteBuffer.array();
 					
-					String clazzName = classFile.getName();
-					clazzName = clazzName.substring(0, clazzName.indexOf("."));
-				
-				
-		            Class clazz = Class.forName(clazzName);
+					String clazzName = PackageFromClassFile.getPackage(classFile);
+					System.out.println("替换：" + clazzName);
+					
+		            Class<?> clazz = Clazzs.getClazz(clazzName);
+		            System.out.println(clazz.getClassLoader());
 		            ClassRedefiner.redefine(clazz, b);
+		            
 		        } catch (IOException e) {
 		            e.printStackTrace();
-		        } catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				} finally {
+		        } finally {
 					if(channel != null) {
 						try {
 							channel.close();
