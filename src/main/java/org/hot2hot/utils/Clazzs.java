@@ -1,10 +1,10 @@
 package org.hot2hot.utils;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Clazzs {
-	private final static Map<String, Class<?>> clazz_map = new HashMap<String, Class<?>>();
+	private final static Map<String, Class<?>> clazz_map = new ConcurrentHashMap<String, Class<?>>();
 	
 	private Clazzs() {}
 	
