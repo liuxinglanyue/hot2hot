@@ -35,7 +35,92 @@
             <artifactId>guava</artifactId>
             <version>14.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>tools</artifactId>
+            <version>1.7</version>
+        </dependency>
     </dependencies>
+    
+    <!-- <profiles>
+		<profile>
+			<id>default-profile</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<file>
+					<exists>${env.JAVA_HOME}/lib/jconsole.jar</exists>
+				</file>
+			</activation>
+			<properties>
+				<toolsjar>${env.JAVA_HOME}/lib/tools.jar</toolsjar>
+				<jconsolejar>${env.JAVA_HOME}/lib/jconsole.jar</jconsolejar>
+			</properties>
+
+			<dependencies>
+				<dependency>
+					<groupId>org.hot2hot</groupId>
+					<artifactId>jconsole</artifactId>
+					<version>1.6.0</version>
+					<scope>system</scope>
+					<systemPath>${jconsolejar}</systemPath>
+					<optional>true</optional>
+				</dependency>
+				<dependency>
+					<groupId>org.hot2hot</groupId>
+					<artifactId>tools</artifactId>
+					<version>1.6.0</version>
+					<scope>system</scope>
+					<systemPath>${toolsjar}</systemPath>
+					<optional>true</optional>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>mac-profile</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<file>
+					<exists>${java.home}/../Classes/jconsole.jar</exists>
+				</file>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.hot2hot</groupId>
+					<artifactId>jconsole</artifactId>
+					<version>1.6.0</version>
+					<scope>system</scope>
+					<systemPath>${java.home}/../Classes/jconsole.jar</systemPath>
+				</dependency>
+			</dependencies>
+		</profile>
+
+        <profile>
+            <id>mac-profile-oracle-jdk</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <file>
+                    <exists>${java.home}/../lib/jconsole.jar</exists>
+                </file>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.hot2hot</groupId>
+                    <artifactId>jconsole</artifactId>
+                    <version>1.8.0</version>
+                    <scope>system</scope>
+                    <systemPath>${java.home}/../lib/jconsole.jar</systemPath>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.hot2hot</groupId>
+                    <artifactId>tools</artifactId>
+                    <version>1.8.0</version>
+                    <scope>system</scope>
+                    <systemPath>${java.home}/../lib/tools.jar</systemPath>
+                </dependency>
+            </dependencies>
+        </profile>
+	</profiles>-->
 
     <build>
         <plugins>
@@ -90,6 +175,10 @@
                                 <relocation>
                                     <pattern>com.google</pattern>
                                     <shadedPattern>com.khotyn.hotcode.third-party-lib.com.google</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>com.sun</pattern>
+                                    <shadedPattern>com.khotyn.hotcode.third-party-lib.com.sun</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
