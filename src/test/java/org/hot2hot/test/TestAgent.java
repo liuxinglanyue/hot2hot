@@ -1,7 +1,5 @@
 package org.hot2hot.test;
 
-import org.hot2hot.utils.Clazzs;
-
 /**
  * 启动参数配置 javaagent
  * -javaagent:hot2hot.jar
@@ -12,7 +10,7 @@ import org.hot2hot.utils.Clazzs;
 public class TestAgent {
 
 	public static void main(String[] args) throws InterruptedException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-		Clazzs.setClazz(A.class.getName(), A.class);
+		//Clazzs.setClazz(A.class.getName(), A.class);
 		A a = new A();
 		a.run();
 		
