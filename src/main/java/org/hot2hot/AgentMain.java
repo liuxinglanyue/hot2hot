@@ -23,7 +23,11 @@ import org.objectweb.asm.Type;
 public class AgentMain {
 
     public static void premain(String agentArgs, Instrumentation inst) {
+    	if(null == agentArgs || agentArgs.trim().length() == 0) {
+    		throw new RuntimeException("启动参数需要加上扫描文件路径！-javaagent:jarpath[=options]");
+    	}
         ClassRedefiner.setInstrumentation(inst);
+        System.out.println("扫描文件夹路径：" + agentArgs);
         
         //替换classloader
         InputStream is = ClassLoader.getSystemResourceAsStream(Type.getInternalName(ClassLoader.class) + ".class");
@@ -48,7 +52,7 @@ public class AgentMain {
         
         //定时任务，扫描文件，替换
         ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(1);
-		FileScanTask task = new FileScanTask("/Users/jiaojianfeng/Documents/empleyment/clazz");
+		FileScanTask task = new FileScanTask(agentArgs);
 		
 		executorService.scheduleWithFixedDelay(task, 1000, 2000, TimeUnit.MILLISECONDS);
 
