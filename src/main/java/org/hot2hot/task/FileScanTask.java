@@ -83,6 +83,7 @@ public class FileScanTask implements Runnable {
 				classFile.delete();
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			//ScheduledExecutorService  bug
 		}
 		
