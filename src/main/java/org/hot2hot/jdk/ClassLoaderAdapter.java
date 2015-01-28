@@ -10,9 +10,9 @@ import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 
 /**
- * Transform the {@link ClassLoader0}.
- * 
- * @author hotcode.huangt 13-6-28 PM9:03
+ * 修改ClassLoader的defineClass
+ * @author jiaojianfeng
+ *
  */
 public class ClassLoaderAdapter extends ClassVisitor {
 
@@ -36,10 +36,6 @@ public class ClassLoaderAdapter extends ClassVisitor {
                     //if 判断
                     Label jump = new Label();
                     Label tryLabel = new Label();
-                    /*mv.visitVarInsn(Opcodes.ALOAD, 1);
-                    mv.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(Clazzs.class),
-                            "getClazz", "(Ljava/lang/String;)Ljava/lang/Class;");
-                    mv.visitJumpInsn(Opcodes.IFNONNULL, jump);*/
                     
                     mv.visitVarInsn(Opcodes.ALOAD, 1);
                     mv.visitLdcInsn("com.sun.");
@@ -83,7 +79,7 @@ public class ClassLoaderAdapter extends ClassVisitor {
                             "startsWith", "(Ljava/lang/String;)Z");
                     mv.visitJumpInsn(Opcodes.IFNE, jump);
                     
-                    //
+                    //if
                     
                     mv.visitVarInsn(Opcodes.ALOAD, 0);
                     mv.visitVarInsn(Opcodes.ALOAD, 1);
@@ -138,21 +134,6 @@ public class ClassLoaderAdapter extends ClassVisitor {
                     mv.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(Clazzs.class),
                             "setClazz", "(Ljava/lang/String;Ljava/lang/Class;)V");
                     
-                    /*mv.visitVarInsn(Opcodes.ALOAD, 0);
-                    mv.visitVarInsn(Opcodes.ALOAD, 1);
-                    mv.visitVarInsn(Opcodes.ALOAD, 2);
-                    mv.visitVarInsn(Opcodes.ILOAD, 3);
-                    mv.visitVarInsn(Opcodes.ILOAD, 4);
-                    mv.visitVarInsn(Opcodes.ALOAD, 5);
-                    mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, Type.getInternalName(ClassLoader.class),
-                            "defineClass", "(Ljava/lang/String;[BIILjava/security/ProtectionDomain;)Ljava/lang/Class;");
-                    
-                    mv.visitVarInsn(Opcodes.ASTORE, 6);
-                    
-                    mv.visitVarInsn(Opcodes.ALOAD, 1);
-                    mv.visitVarInsn(Opcodes.ALOAD, 6);
-                    mv.visitMethodInsn(Opcodes.INVOKESTATIC, Type.getInternalName(Clazzs.class),
-                                       "setClazz", "(Ljava/lang/String;Ljava/lang/Class;)V");*/
                     mv.visitVarInsn(Opcodes.ALOAD, 6);
                     mv.visitInsn(Opcodes.ARETURN);
                     
