@@ -35,11 +35,11 @@
             <artifactId>guava</artifactId>
             <version>14.0.1</version>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>com.sun</groupId>
             <artifactId>tools</artifactId>
             <version>1.7</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
     
     <!-- <profiles>
@@ -176,10 +176,10 @@
                                     <pattern>com.google</pattern>
                                     <shadedPattern>com.khotyn.hotcode.third-party-lib.com.google</shadedPattern>
                                 </relocation>
-                                <relocation>
+                                <!-- <relocation>
                                     <pattern>com.sun</pattern>
                                     <shadedPattern>com.khotyn.hotcode.third-party-lib.com.sun</shadedPattern>
-                                </relocation>
+                                </relocation> -->
                             </relocations>
                         </configuration>
                     </execution>

@@ -9,7 +9,7 @@ import java.nio.channels.FileChannel;
 
 import org.hot2hot.ClassRedefiner;
 import org.hot2hot.utils.Clazzs;
-import org.hot2hot.utils.PackageFromClassFile;
+import org.hot2hot.utils.PackageFromClassFast;
 
 /**
  * 文件扫描
@@ -55,7 +55,7 @@ public class FileScanTask implements Runnable {
 					
 					byte[] b = byteBuffer.array();
 					
-					String clazzName = PackageFromClassFile.getPackage(classFile);
+					String clazzName = PackageFromClassFast.getPackage(classFile.getAbsolutePath());
 					System.out.println("替换：" + clazzName);
 					
 		            Class<?> clazz = Clazzs.getClazz(clazzName);

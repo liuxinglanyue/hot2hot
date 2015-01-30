@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.IOUtils;
 import org.hot2hot.jdk.ClassLoaderAdapter;
 import org.hot2hot.task.FileScanTask;
-import org.hot2hot.utils.ClassDumper;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
@@ -38,7 +37,7 @@ public class AgentMain {
             ClassVisitor cv = new ClassLoaderAdapter(cw);
             cr.accept(cv, 0);
             byte[] transformedByte = cw.toByteArray();
-            ClassDumper.dump(Type.getInternalName(ClassLoader.class), transformedByte);
+            //ClassDumper.dump(Type.getInternalName(ClassLoader.class), transformedByte);
             ClassDefinition classDefinition = new ClassDefinition(ClassLoader.class, transformedByte);
 
             try {
